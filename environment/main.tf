@@ -12,3 +12,10 @@ module "my_security_group" {
   source = "../modules/security_group"
   security_group_name = var.security_group_name
 }
+
+module "s3_bucket" {
+  source      = "../modules/s3_bucket"
+  acl         = var.acl
+  bucket_name = var.bucket_name
+  folders     = var.folders
+}
