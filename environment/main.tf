@@ -1,10 +1,13 @@
 module "ec2_instance" {
-  source         = "../modules/ec2"
+  source = "../modules/ec2"
+  for_each = {
+    for instances in var.ec2_instances : instances.instance_name => instances
+  }
   depends_on     = [module.my_security_group]
-  instance_name  = var.instance_name
-  ami            = var.ami
-  instance_type  = var.instance_type
-  key_name       = var.key_name
+  instance_name  = each.value.instance_name
+  ami            = each.value.ami
+  instance_type  = each.value.instance_type
+  key_name       = each.value.key_name
   security_group = [module.my_security_group.security_group_ID]
 }
 
@@ -14,10 +17,13 @@ module "my_security_group" {
 }
 
 module "s3_bucket" {
-  source      = "../modules/s3_bucket"
-  acl         = var.acl
-  bucket_name = var.bucket_name
-  folders     = var.folders
+  source = "../modules/s3_bucket"
+  for_each = {
+    for buckets in var.s3_bucket : buckets.bucket_name => buckets
+  }
+  acl         = each.value.acl
+  bucket_name = each.value.bucket_name
+  folders     = each.value.folders
 }
 
 module "launch_configuration" {

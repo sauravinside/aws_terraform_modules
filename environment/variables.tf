@@ -2,37 +2,28 @@ variable "region" {
   type = string
 }
 ############################################
+variable "ec2_instances" {
+  description = "ec2 instances necessary values"
+  type = map(object({
+    instance_name = string
+    ami           = string
+    instance_type = string
+    key_name      = string
+  }))
+}
 
-variable "ami" {
-  type = string
-}
-variable "instance_type" {
-  type    = string
-  default = "t2.micro"
-}
-variable "key_name" {
-  type    = string
-  default = "saurav-virginia-searce-hyd"
-}
-variable "instance_name" {
-  type    = string
-  default = "Instance_by_terraform"
-}
 ##############################################
 variable "security_group_name" {
-    type = string
+  type = string
 }
 ##############################################
-
-variable "bucket_name" {
-  type = string
-}
-variable "acl" {
-  type = string
-}
-#################################################
-variable "folders" {
-  type = set(string)
+variable "s3_bucket" {
+  description = "the s3 bucket parameters"
+  type = list(object({
+    bucket_name = string
+    acl         = string
+    folders     = set(string)
+  }))
 }
 #################################################
 variable "lc_name" {
@@ -44,7 +35,7 @@ variable "lc_key_name" {
   type    = string
 }
 variable "lc_instance_type" {
-  type = string
+  type    = string
   default = "t2.micro"
 }
 variable "lc_image_id" {

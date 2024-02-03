@@ -24,8 +24,8 @@ resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
 
 resource "aws_s3_bucket_acl" "acl" {
   depends_on = [aws_s3_bucket_ownership_controls.bucket_ownership]
-  bucket = aws_s3_bucket.bucket.id
-  acl    = var.acl
+  bucket     = aws_s3_bucket.bucket.id
+  acl        = var.acl
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_policy" {
