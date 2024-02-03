@@ -10,3 +10,8 @@ security_group_name = "sg by terraform"
 acl         = "private"
 bucket_name = "tawfeek-test1"
 folders     = ["folder1/"]
+
+lc_name     = "web_config_new"
+lc_key_name = "saurav-virginia-searce-hyd"
+lc_image_id = "ami-0b98a32b1c5e0d105"
+lc_instance_type = "t2.micro"

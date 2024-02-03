@@ -1,7 +1,7 @@
 resource "aws_launch_configuration" "as_conf" {
-  name            = var.name
-  image_id        = "ami-08b4e658c041c8560"
-  instance_type   = "t2.micro"
-  security_groups = ["sg-0a04f070bf223552c", "sg-0d96fdab97b315731"]
-  key_name        = var.key_name
+  name            = var.lc_name
+  image_id        = var.lc_image_id
+  instance_type   = var.lc_instance_type
+  security_groups = var.lc_security_groups
+  key_name        = var.lc_key_name
 }
