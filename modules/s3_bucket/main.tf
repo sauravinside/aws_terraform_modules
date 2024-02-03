@@ -44,7 +44,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_policy" {
 ###Object###
 ############
 
-resource "aws_s3_bucket_object" "example_folder" {
+resource "aws_s3_object" "example_folder" {
   bucket   = aws_s3_bucket.bucket.id
   for_each = var.folders
   key      = each.key
